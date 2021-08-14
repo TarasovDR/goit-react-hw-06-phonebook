@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import contactsActions from '../../redux/contacts/contacts-actions';
+import { deleteContact } from '../../redux/contacts/contacts-actions';
 import { MdRemoveCircle } from 'react-icons/md';
 import {
   ContactContainer,
@@ -15,7 +15,7 @@ const ContactList = ({ contacts, onDeleteContact }) => {
         <ContactItem key={id} name={name} number={number}>
           <span>{name}:</span>
           <span>{number}</span>
-          <ContactButton onClick={() => onDeleteContact()}>
+          <ContactButton onClick={() => onDeleteContact(id)}>
             <MdRemoveCircle />
             Delete
           </ContactButton>
@@ -36,18 +36,40 @@ ContactList.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  contacts: state.contacts.contacts,
-  // contacts.find(
-  //       contact =>
-  //         contact.name.toLowerCase() === newContact.name.toLowerCase() &&
-  //         contact.number === newContact.number,
-  //     )
-  //       ? alert(`${name} is already in contacts`)
-  //       : setContacts([newContact, ...contacts]),
-});
+// const visibleContacts = () => {
+//   const normalizedFilter = filtered.toLowerCase();
+//   return contacts.filter(contact =>
+//     contact.name.toLowerCase().includes(normalizedFilter),
+//   );
+// };
+
+// const mapStateToProps = state => {
+
+// console.log(state)
+// contacts.find(
+//       contact =>
+//         contact.name.toLowerCase() === newContact.name.toLowerCase() &&
+//         contact.number === newContact.number,
+//     )
+//       ? alert(`${name} is already in contacts`)
+//       : setContacts([newContact, ...contacts]),
+// };
+const mapStateToProps = state => {
+  const { filter, contacts } = state.contacts;
+  const normalizedFilter = filter.toLowerCase();
+
+  const visibleContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter),
+  );
+
+  return { contacts: visibleContacts };
+};
+
 const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(contactsActions.deleteContact(id)),
+  onDeleteContact: id => dispatch(deleteContact(id)),
 });
+// const mapDispatchToProps = dispatch => ({
+//   onDeleteContact: id => dispatch(deleteContact(id)),
+// });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
