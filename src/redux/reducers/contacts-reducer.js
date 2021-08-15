@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import { createReducer } from '@reduxjs/toolkit';
 import {
   addContact,
@@ -13,23 +12,18 @@ const initialContactState = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-const contacts = createReducer(initialContactState, {
+export const contactReducer = createReducer(initialContactState, {
   [addContact]: (state, { payload }) =>
     state.some(
       ({ name, number }) => name === payload.name && number === payload.number,
     )
       ? alert(`${payload.name} is already in contacts`)
-      : [payload, ...state],
+      : [...state, payload],
 
   [deleteContact]: (state, { payload }) =>
-    state.filter(contact => contact.name !== payload),
+    state.filter(contact => contact.id !== payload),
 });
 
-const filter = createReducer('', {
+export const filterReducer = createReducer('', {
   [changeFilter]: (_, { payload }) => payload,
-});
-
-export default combineReducers({
-  contacts,
-  filter,
 });
