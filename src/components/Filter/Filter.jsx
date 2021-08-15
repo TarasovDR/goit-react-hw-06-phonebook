@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import SubTitle from 'components/SubTitle';
 import { connect } from 'react-redux';
-import { changeFilter } from '../../redux/contacts/contacts-actions';
+import { changeFilter } from '../../redux/actions/contacts-actions';
 
 import { LabelFilter, InputFilter } from './Filter.styled';
 import { ImSearch } from 'react-icons/im';
@@ -22,7 +22,7 @@ Filter.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  value: state.contacts.filter,
+  value: state.filter,
 });
 
 const mapDispatchToProps = dispatch => ({

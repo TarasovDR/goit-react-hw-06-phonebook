@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SubTitle from 'components/SubTitle';
 import { connect } from 'react-redux';
-import { addContact } from '../../redux/contacts/contacts-actions';
+import { addContact } from '../../redux/actions/contacts-actions';
 
 import { Form, Label, Input, AddButton } from './ContactForm.styled';
 import { TiUserAdd, TiUser, TiPhone } from 'react-icons/ti';

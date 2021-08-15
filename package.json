@@ -16,7 +16,9 @@
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.4",
     "redux": "^4.1.1",
+    "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"
   },
@@ -50,8 +52,7 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "prettier": "^2.3.2",
-    "prop-types": "^15.7.2",
-    "redux-devtools-extension": "^2.13.9"
+    "prop-types": "^15.7.2"
   },
   "lint-staged": {
     "*.{js,jsx}": "eslint --cache --fix",
